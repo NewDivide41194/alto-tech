@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 import CompanyLogo_Circle from "../../public/images/logo_circle.png";
 import CompanyLogo from "../../public/images/logo.png";
 
@@ -40,7 +39,7 @@ export const Sidebar=()=> {
         <div className="flex justify-center bg-blue min-h-[280px]">
           <div className="flex flex-col my-auto">
             <Image alt="Logo" src={CompanyLogo_Circle} />
-            <div className="text-center text-white pt-8">Room 301</div>
+            <div className="text-center text-white text-xl pt-8">Room 301</div>
           </div>
         </div>
         <div className="flex-1">

@@ -1,11 +1,20 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectSideBar, sideBarShowHide } from "../feature/app/appSlice";
-import {Header,MenuBar,Carousel,Sidebar,Overlay,ServiceGallery,ChatRoom} from "../components/home";
-import IconClose from "../public/icons/icon-close.svg";
-// import { sideBarShowHide } from "../../feature/counter/altoSlice";
-import Image from "next/image";
+import {
+  Header,
+  MenuBar,
+  Carousel,
+  Sidebar,
+  Overlay,
+  ServiceGallery,
+  ChatRoom,
+} from "../components/home";
+
 
 const IndexPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -28,12 +37,10 @@ const IndexPage: React.FC = () => {
           {isOpen && (
             <>
               <Overlay />
-              <Image
+              <FontAwesomeIcon
+                icon={faTimes}
+                className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
                 onClick={() => dispatch(sideBarShowHide())}
-                className="absolute z-50 cursor-pointer top-8 left-4"
-                alt="Icon_sidebar"
-                src={IconClose}
-                height={20}
               />
             </>
           )}
@@ -50,13 +57,12 @@ const IndexPage: React.FC = () => {
         <ChatRoom />
       </div>
 
-{/*     
+      {/*     
         <input
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(Number(e.target.value))}
           type="number"
         /> */}
-      
     </>
   );
 };

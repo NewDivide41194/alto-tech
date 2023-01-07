@@ -6,6 +6,7 @@ export type CounterState = {
   notiOpen: boolean;
   isChatRoom: boolean;
   selectedPage: string;
+  text:string
 };
 
 const initialState: CounterState = {
@@ -13,10 +14,11 @@ const initialState: CounterState = {
   notiOpen: false,
   isChatRoom: false,
   selectedPage: "Home",
+  text:""
 };
 
 export const sideBarSlice = createSlice({
-  name: "my_Slice",
+  name: "appSlice",
   initialState,
 
   reducers: {
@@ -29,10 +31,12 @@ export const sideBarSlice = createSlice({
     },
     chatRoomShowHide: (state) => {
       state.isChatRoom = !state.isChatRoom;
-      state.notiOpen = false;
     },
     sideBarMenuSelect: (state, action: PayloadAction<string>) => {
       state.selectedPage = action.payload;
+    },
+    textUpdate: (state, action: PayloadAction<string>) => {
+      state.text = action.payload;
     },
   },
 });
@@ -42,14 +46,17 @@ export const {
   notiShowHide,
   chatRoomShowHide,
   sideBarMenuSelect,
+  textUpdate
 } = sideBarSlice.actions;
 
 // calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.
-export const selectSideBar = (state: RootState) => state.sideBar.isOpen;
-export const selectNoti = (state: RootState) => state.sideBar.notiOpen;
+export const selectSideBar = (state: RootState) => state.app.isOpen;
+export const selectNoti = (state: RootState) => state.app.notiOpen;
 export const selectSideBarMenu = (state: RootState) =>
-  state.sideBar.selectedPage;
-export const selectChatRoom = (state: RootState) => state.sideBar.isChatRoom;
+  state.app.selectedPage;
+export const selectChatRoom = (state: RootState) => state.app.isChatRoom;
+export const selectText = (state: RootState) => state.app.text;
+
 
 // exporting the reducer here, as we need to add this to the store
 export default sideBarSlice.reducer;

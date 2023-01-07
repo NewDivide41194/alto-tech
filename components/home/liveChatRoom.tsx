@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   chatRoomShowHide,
   selectChatRoom,
+  selectText,
+  textUpdate,
 } from "../../feature/app/appSlice";
 
 export const ChatRoom = () => {
@@ -23,7 +25,10 @@ export const ChatRoom = () => {
         onClick={() => dispatch(chatRoomShowHide())}
       >
         {isOpen ? (
-          <FontAwesomeIcon icon={faTimes} className="text-[20px] text-white pl-[6px] pt-[3px]" />
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="text-[20px] text-white pl-[6px] pt-[3px]"
+          />
         ) : (
           <Image alt="bed" src={IconLiveChat} />
         )}
@@ -33,25 +38,38 @@ export const ChatRoom = () => {
 };
 
 const PopupChatRoom = () => {
+  const text = useAppSelector(selectText);
+  const dispatch = useAppDispatch();
+
   return (
     <div className="bg-gray w-[240px] rounded-md drop-shadow-lg">
       <div className="bg-blue text-white rounded-t-md p-2 space-x-2">
         <FontAwesomeIcon icon={faCircle} className="text-green text-[12px]" />
         <span>Live Chat</span>
       </div>
+      <MessageHistory />
       <div className="h-[300px]">
         <div className="flex bottom-0 absolute p-2 space-x-2">
           <input
             type="text"
-            value={""}
+            onChange={(e) => dispatch(textUpdate(e.target.value))}
+            value={text}
             className="rounded-full p-2 w-5/6"
             placeholder="Message"
           />
-          <span className="bg-blue rounded-full p-2 w-[20px] w-1/6 text-white">
+          <span className="p-1 text-lg w-1/6 text-blue cursor-pointer">
             <FontAwesomeIcon icon={faPaperPlane} />
           </span>
         </div>
       </div>
+    </div>
+  );
+};
+
+const MessageHistory = () => {
+  return (
+    <div className="flex m-2 justify-end">
+      <span className="p-1 bg-white rounded-full">Hello</span>
     </div>
   );
 };

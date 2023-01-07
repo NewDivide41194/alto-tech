@@ -8,7 +8,7 @@ import myReducer from '../feature/app/appSlice';
 
 export const store = configureStore({
   reducer: {
-    sideBar:myReducer
+    app:myReducer
   },
 });
 

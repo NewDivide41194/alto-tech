@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoWhite from "../../public/images/logo_white.png";
 import IconNoti from "../../public/images/Icon-Notification.png";
-import IconBurger from "../../public/icons/icon-burger.svg";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
@@ -28,23 +29,29 @@ export const Header = () => {
         className="cursor-pointer"
         onClick={() => dispatch(sideBarShowHide())}
       >
-        {isOpen || <Image alt="Icon_sidebar" src={IconBurger} height={20} />}
+        {isOpen || (
+          <FontAwesomeIcon icon={faBars} className="text-white text-lg" />
+        )}
       </div>
       <Image alt="Logo_white" src={LogoWhite} />
       <div
         className="relative cursor-pointer"
         onClick={() => dispatch(notiShowHide())}
       >
-        <Image alt="Icon_noti" src={IconNoti} />
+          <FontAwesomeIcon icon={faBell} className="text-white text-lg" />
         {notiData && (
           <div className="bg-orange w-2 h-2 absolute top-0 right-0 rounded-full" />
         )}
       </div>
-      {isNotiOpen && (
-        <div className="absolute top-10 right-8 bg-gray p-4 z-40 rounded-lg">
-          <p className="font-bold">Notifications</p>
-        </div>
-      )}
+      {isNotiOpen && <NotificationCard />}
+    </div>
+  );
+};
+
+const NotificationCard = () => {
+  return (
+    <div className="absolute top-10 right-8 bg-gray p-4 z-40 rounded-lg">
+      <p className="font-bold">Notifications</p>
     </div>
   );
 };
