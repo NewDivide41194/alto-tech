@@ -15,7 +15,6 @@ import {
   ChatRoom,
 } from "../components/home";
 
-
 const IndexPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState<number>(0);

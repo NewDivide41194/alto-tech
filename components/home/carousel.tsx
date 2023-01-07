@@ -18,13 +18,13 @@ export const Carousel = () => {
       modules={[Pagination, Autoplay]}
       spaceBetween={50}
       // slidesPerView={1}
+      initialSlide={1}
       centeredSlides={true}
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
       autoplay
-      grabCursor= {true}
-
+      grabCursor={true}
       breakpoints={{
         320: {
           slidesPerView: 1,
@@ -43,14 +43,26 @@ export const Carousel = () => {
       }}
       // style={{paddingRight:80}}
     >
-      <SwiperSlide style={{height:280}}>
-        <Image src={HotelIMG} alt="carousel_image" className="min-h-[240px] rounded-lg mx-auto" />
+      <SwiperSlide style={{ height: 280 }}>
+        <Image
+          src={HotelIMG}
+          alt="carousel_image"
+          className="min-h-[240px] rounded-lg mx-auto"
+        />
       </SwiperSlide>
       <SwiperSlide>
-        <Image src={HotelIMG} alt="carousel_image" className="min-h-[240px] rounded-lg  mx-auto" />
+        <Image
+          src={HotelIMG}
+          alt="carousel_image"
+          className="min-h-[240px] rounded-lg  mx-auto"
+        />
       </SwiperSlide>
       <SwiperSlide>
-        <Image src={HotelIMG} alt="carousel_image" className="min-h-[240px] rounded-lg  mx-auto" />
+        <Image
+          src={HotelIMG}
+          alt="carousel_image"
+          className="min-h-[240px] rounded-lg  mx-auto"
+        />
       </SwiperSlide>
     </Swiper>
   );

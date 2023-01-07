@@ -13,6 +13,8 @@ import {
   selectText,
   textUpdate,
 } from "../../feature/app/appSlice";
+import { push, child, ref, set, onValue } from "firebase/database";
+import { database } from "../../firebase/app";
 
 export const ChatRoom = () => {
   const dispatch = useAppDispatch();
@@ -41,6 +43,26 @@ const PopupChatRoom = () => {
   const text = useAppSelector(selectText);
   const dispatch = useAppDispatch();
 
+  const _handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const timestamp = Date.now();
+    const message = text;
+    // const messageInput=document.getElementById("message-input")
+    // const message=messageInput.
+    // db.ref("messages/" + timestamp).set({
+
+    //   message
+    // });
+    const dbRef = ref(database, "message/");
+    push(dbRef, { name: "client", message }).then(() => {
+      console.log("Data added");
+    });
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(",,,,", data);
+    });
+  };
+
   return (
     <div className="bg-gray w-[240px] rounded-md drop-shadow-lg">
       <div className="bg-blue text-white rounded-t-md p-2 space-x-2">
@@ -51,13 +73,17 @@ const PopupChatRoom = () => {
       <div className="h-[300px]">
         <div className="flex bottom-0 absolute p-2 space-x-2">
           <input
+            id="message-input"
             type="text"
             onChange={(e) => dispatch(textUpdate(e.target.value))}
             value={text}
             className="rounded-full p-2 w-5/6"
             placeholder="Message"
           />
-          <span className="p-1 text-lg w-1/6 text-blue cursor-pointer">
+          <span
+            className="p-1 text-lg w-1/6 text-blue cursor-pointer"
+            onClick={_handleSubmit}
+          >
             <FontAwesomeIcon icon={faPaperPlane} />
           </span>
         </div>
