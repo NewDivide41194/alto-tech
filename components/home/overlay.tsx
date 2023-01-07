@@ -1,7 +1,7 @@
-import { sideBarShowHide } from "../../feature/counter/altoSlice";
+import { sideBarShowHide } from "../../feature/app/appSlice";
 import { useAppDispatch } from "../../hooks";
 
-const Overlay = () => {
+export const Overlay = () => {
   const dispatch = useAppDispatch();
   return (
     <div
@@ -10,5 +10,3 @@ const Overlay = () => {
     />
   );
 };
-
-export default Overlay;

@@ -11,9 +11,9 @@ import {
   selectNoti,
   selectSideBar,
   sideBarShowHide,
-} from "../../feature/counter/altoSlice";
+} from "../../feature/app/appSlice";
 
-const Header = () => {
+export const Header = () => {
   const isOpen = useAppSelector(selectSideBar);
   const notiOpen = useAppSelector(selectNoti);
   const isNotiOpen = useAppSelector(selectNoti);
@@ -48,5 +48,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

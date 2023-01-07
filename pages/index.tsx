@@ -1,26 +1,14 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  selectCount,
-} from "../feature/counter/counterSlice";
-import Header from "../components/header/headerBar";
-import MenuBar from "../components/header/menuBar";
-import ServiceGallery from "../components/header/serviceGallery";
-import SideBar from "../components/header/sideBar";
-import { selectSideBar, sideBarShowHide } from "../feature/counter/altoSlice";
-import Carousel from "../components/header/carousel";
-import Overlay from "../components/header/overlay";
-import ChatRoom from "../components/header/ChatRoom";
+
+import { selectSideBar, sideBarShowHide } from "../feature/app/appSlice";
+import {Header,MenuBar,Carousel,Sidebar,Overlay,ServiceGallery,ChatRoom} from "../components/home";
 import IconClose from "../public/icons/icon-close.svg";
 // import { sideBarShowHide } from "../../feature/counter/altoSlice";
 import Image from "next/image";
 
 const IndexPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const count = useAppSelector(selectCount);
   const [incrementAmount, setIncrementAmount] = useState<number>(0);
   const isOpen = useAppSelector(selectSideBar);
 
@@ -29,7 +17,7 @@ const IndexPage: React.FC = () => {
       <div className="grid grid-cols-6 overflow-x-hidden">
         {isOpen ? (
           <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
-            <SideBar />
+            <Sidebar />
           </div>
         ) : null}
         <div
@@ -62,27 +50,13 @@ const IndexPage: React.FC = () => {
         <ChatRoom />
       </div>
 
-      {/* <h1>Welcome to the greatest app in the world!</h1>
-      <h2>
-        The current number is
-        {count}
-      </h2>
-      <div>
+{/*     
         <input
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(Number(e.target.value))}
           type="number"
-        />
-        <button
-          onClick={() =>        dispatch(incrementByAmount(Number(incrementAmount)))}
-        >
-          Increment by amount
-        </button>
-      </div>
-      <div>
-        <button onClick={() => dispatch(decrement())}>Decrement by 1</button>
-        <button onClick={() => dispatch(increment())}>Increment by 1</button>
-      </div> */}
+        /> */}
+      
     </>
   );
 };

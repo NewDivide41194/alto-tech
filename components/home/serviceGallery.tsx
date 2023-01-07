@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceGallery = () => {
+export const ServiceGallery = () => {
   return (
     <div className="p-6">
       <div className="font-bold pb-4"> Welcome to Alto Hotel</div>
@@ -32,4 +32,3 @@ const galleryData = [
     title: "Service B",
   },
 ];
-export default ServiceGallery;

@@ -10,9 +10,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   chatRoomShowHide,
   selectChatRoom,
-} from "../../feature/counter/altoSlice";
+} from "../../feature/app/appSlice";
 
-const ChatRoom = () => {
+export const ChatRoom = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectChatRoom);
   return (
@@ -31,8 +31,6 @@ const ChatRoom = () => {
     </div>
   );
 };
-
-export default ChatRoom;
 
 const PopupChatRoom = () => {
   return (

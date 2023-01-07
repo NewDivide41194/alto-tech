@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const Carousel = () => {
+export const Carousel = () => {
   return (
     <Swiper
       // install Swiper modules
@@ -55,5 +55,3 @@ const Carousel = () => {
     </Swiper>
   );
 };
-
-export default Carousel;

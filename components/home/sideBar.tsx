@@ -6,10 +6,10 @@ import CompanyLogo from "../../public/images/logo.png";
 import {
   selectSideBarMenu,
   sideBarMenuSelect,
-} from "../../feature/counter/altoSlice";
+} from "../../feature/app/appSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
-export default function Sidebar() {
+export const Sidebar=()=> {
   const dispatch = useAppDispatch();
   const selectPage = useAppSelector(selectSideBarMenu);
 

@@ -4,7 +4,7 @@ import Bed from "../../public/images/Icon-Bed.png";
 import Key from "../../public/images/Icon-VirtualKey.png";
 import Wifi from "../../public/images/Icon-Wifi.png";
 
-const MenuBar = () => {
+export const MenuBar = () => {
   return (
     <div className="p-6">
       <div className="font-bold pb-4">Good evening, Mr.Joe</div>
@@ -50,5 +50,3 @@ const MenuBar = () => {
     </div>
   );
 };
-
-export default MenuBar;

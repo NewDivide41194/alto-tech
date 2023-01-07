@@ -3,13 +3,11 @@ import {
   configureStore,
   ThunkAction,
 } from '@reduxjs/toolkit';
-import counterReducer from '../feature/counter/counterSlice';
-import myReducer from '../feature/counter/altoSlice';
+import myReducer from '../feature/app/appSlice';
 
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     sideBar:myReducer
   },
 });
