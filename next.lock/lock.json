@@ -1,0 +1,4 @@
+{
+  "https://www.gstatic.com/firebasejs/9.0.2/firebase-messaging-compat.js": { "integrity": "sha512-knudETaXfPD6qHO+Vi7dIFen5nIHRezGEEjDAEs6dq/rWijOHX+hfNhb7KMJjlFR70zykDGWXcoWp51TZkMWwQ==", "contentType": "text/javascript; charset=UTF-8" },
+  "version": 1
+}

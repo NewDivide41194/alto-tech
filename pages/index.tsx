@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,53 +16,66 @@ import {
 } from "../components/home";
 
 const IndexPage: React.FC = () => {
+  useEffect(() => {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/firebase-messaging-sw.js").then(
+        function (registration) {
+          console.log(
+            "Service Worker registration successful with scope: ",
+            registration.scope
+          );
+        },
+        function (err) {
+          console.log("Service Worker registration failed: ", err);
+        }
+      );
+    });
+  });
   const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState<number>(0);
+  const [show, setShow] = useState(false);
+  const [notification, setNotification] = useState({ title: "", body: "" });
+
   const isOpen = useAppSelector(selectSideBar);
+  const [isTokenFound, setTokenFound] = useState(false);
+
+  // getToken(false);
+
+  console.log("--------->", notification);
 
   return (
-    <>
-      <div className="grid grid-cols-6 overflow-x-hidden">
-        {isOpen ? (
-          <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
-            <Sidebar />
-          </div>
-        ) : null}
-        <div
-          className={`relative ${
-            isOpen ? "lg:col-span-4 md:col-span-4 xs:col-span-2" : "col-span-6"
-          } min-w-[390px] `}
-        >
-          {isOpen && (
-            <>
-              <Overlay />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
-                onClick={() => dispatch(sideBarShowHide())}
-              />
-            </>
-          )}
-
-          <div className=" bg-blue h-[280px]">
-            <Header />
-            <Carousel />
-          </div>
-          <div className="mt-8">
-            <MenuBar />
-            <ServiceGallery />
-          </div>
+    <div className="grid grid-cols-6 overflow-x-hidden">
+      {isOpen ? (
+        <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
+          <Sidebar />
         </div>
-        <ChatRoom />
-      </div>
+      ) : null}
+      <div
+        className={`relative ${
+          isOpen ? "lg:col-span-4 md:col-span-4 xs:col-span-2" : "col-span-6"
+        } min-w-[390px] `}
+      >
+        {isOpen && (
+          <>
+            <Overlay />
+            <FontAwesomeIcon
+              icon={faTimes}
+              className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
+              onClick={() => dispatch(sideBarShowHide())}
+            />
+          </>
+        )}
 
-      {/*     
-        <input
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(Number(e.target.value))}
-          type="number"
-        /> */}
-    </>
+        <div className=" bg-blue h-[280px]">
+          <Header />
+          <Carousel />
+        </div>
+        <div className="mt-8">
+          <MenuBar />
+          <ServiceGallery />
+        </div>
+      </div>
+      <ChatRoom />
+    </div>
   );
 };
 

@@ -9,16 +9,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   chatRoomShowHide,
+  getMessage,
+  removeText,
   selectChatRoom,
+  selectMessage,
   selectText,
+  selectUser,
   textUpdate,
+  updateMessage,
 } from "../../feature/app/appSlice";
-import { push, child, ref, set, onValue } from "firebase/database";
-import { database } from "../../firebase/app";
+import { push, ref, onValue } from "firebase/database";
+import { database } from "../../firebase/client";
+import React, { useEffect } from "react";
 
 export const ChatRoom = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectChatRoom);
+
   return (
     <div className="flex fixed bottom-8 right-8 items-end space-x-2">
       {isOpen && <PopupChatRoom />}
@@ -41,35 +48,71 @@ export const ChatRoom = () => {
 
 const PopupChatRoom = () => {
   const text = useAppSelector(selectText);
+  const userId = "h_3876201";
+  const timestamp = Date.now();
+  const userName = "Hein_Htet";
+  const messageArr = useAppSelector(selectMessage);
+
   const dispatch = useAppDispatch();
 
-  const _handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    const timestamp = Date.now();
-    const message = text;
-    // const messageInput=document.getElementById("message-input")
-    // const message=messageInput.
-    // db.ref("messages/" + timestamp).set({
+  const dbRef = ref(database, `message/${userId}/${userName}`);
 
-    //   message
-    // });
-    const dbRef = ref(database, "message/");
-    push(dbRef, { name: "client", message }).then(() => {
-      console.log("Data added");
-    });
+  const addMessage = () => {
     onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(",,,,", data);
+
+      const messages =
+        data &&
+        Object.keys(data).map((k) => ({
+          id: k,
+          userId,
+          message: data[k].message,
+          timestamp: data[k].timestamp,
+        }));
+      dispatch(getMessage(messages));
     });
+  };
+  useEffect(() => {
+    addMessage();
+  }, []);
+
+  const _handleSubmit = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    push(dbRef, { message: text, timestamp }).then((data) => {
+      console.log("Data added");
+    });
+    dispatch(updateMessage({ message: text, timestamp }));
+    dispatch(removeText());
   };
 
   return (
-    <div className="bg-gray w-[240px] rounded-md drop-shadow-lg">
+    <div className="bg-gray w-[240px] rounded-md drop-shadow-lg max-h-[300px]">
       <div className="bg-blue text-white rounded-t-md p-2 space-x-2">
         <FontAwesomeIcon icon={faCircle} className="text-green text-[12px]" />
         <span>Live Chat</span>
       </div>
-      <MessageHistory />
+      <div className="max-h-[200px] overflow-x-auto">
+        {messageArr?.length > 0 ? (
+          messageArr.map((a, i) => (
+            <div
+              className={`flex m-2 ${
+                a.userId === userId ? "justify-end" : "justify-start"
+              }`}
+              key={i}
+            >
+              <span className="p-1 bg-white rounded-md display-block text-ellipsis overflow-hidden">
+                {a.message}
+                <span className="text-darkGray text-xs"></span>
+              </span>
+            </div>
+          ))
+        ) : (
+          <span>No Message</span>
+        )}
+      </div>
+
       <div className="h-[300px]">
         <div className="flex bottom-0 absolute p-2 space-x-2">
           <input
@@ -88,14 +131,6 @@ const PopupChatRoom = () => {
           </span>
         </div>
       </div>
-    </div>
-  );
-};
-
-const MessageHistory = () => {
-  return (
-    <div className="flex m-2 justify-end">
-      <span className="p-1 bg-white rounded-full">Hello</span>
     </div>
   );
 };

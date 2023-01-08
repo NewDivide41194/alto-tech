@@ -21,8 +21,6 @@ export const Carousel = () => {
       initialSlide={1}
       centeredSlides={true}
       pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
       autoplay
       grabCursor={true}
       breakpoints={{
