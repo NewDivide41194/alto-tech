@@ -9,25 +9,25 @@ Describe how this software can improve the lives of its audience.
 - **Status**: 1.1
 
 ## Dependencies
-"@fortawesome/fontawesome-svg-core": "^6.2.1",
-"@fortawesome/free-brands-svg-icons": "^6.2.1",
-"@fortawesome/free-solid-svg-icons": "^6.2.1",
-"@fortawesome/react-fontawesome": "^0.2.0",
-"@next/font": "13.1.1",
-"@reduxjs/toolkit": "^1.9.1",
-"@types/node": "18.11.18",
-"@types/react": "18.0.26",
-"@types/react-dom": "18.0.10",
-"eslint": "8.31.0",
-"eslint-config-next": "13.1.1",
-"firebase": "^7.6.2",
-"localforage": "^1.10.0",
-"next": "13.1.1",
-"react": "18.2.0",
-"react-dom": "18.2.0",
-"react-redux": "^8.0.5",
-"swiper": "^8.4.5",
-"typescript": "4.9.4"
+- "@fortawesome/fontawesome-svg-core": "^6.2.1",
+- "@fortawesome/free-brands-svg-icons": "^6.2.1",
+- "@fortawesome/free-solid-svg-icons": "^6.2.1",
+- "@fortawesome/react-fontawesome": "^0.2.0",
+- "@next/font": "13.1.1",
+- "@reduxjs/toolkit": "^1.9.1",
+- "@types/node": "18.11.18",
+- "@types/react": "18.0.26",
+- "@types/react-dom": "18.0.10",
+- "eslint": "8.31.0",
+- "eslint-config-next": "13.1.1",
+- "firebase": "^7.6.2",
+- "localforage": "^1.10.0",
+- "next": "13.1.1",
+- "react": "18.2.0",
+- "react-dom": "18.2.0",
+- "react-redux": "^8.0.5",
+- "swiper": "^8.4.5",
+- "typescript": "4.9.4"
 
 ## Installation and Run
 
@@ -37,14 +37,14 @@ npm run dev
 ```
 
 ## Configuration
-NEXT_PUBLIC_FIREBASE_API_KEY = "your API Key"
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = "your Auth Domain"
-NEXT_PUBLIC_FIREBASE_DATABASE_URL="your Database URL"
-NEXT_PUBLIC_FIREBASE_PROJECT_ID = "Your Project ID"
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = "Your Storage Bucket"
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = "Your Sender ID"
-NEXT_PUBLIC_FIREBASE_APP_ID = "Your APP ID"
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = "Your Measurement ID"
+- NEXT_PUBLIC_FIREBASE_API_KEY = "your API Key"
+- NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = "your Auth Domain"
+- NEXT_PUBLIC_FIREBASE_DATABASE_URL="your Database URL"
+- NEXT_PUBLIC_FIREBASE_PROJECT_ID = "Your Project ID"
+- NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = "Your Storage Bucket"
+- NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = "Your Sender ID"
+- NEXT_PUBLIC_FIREBASE_APP_ID = "Your APP ID"
+- NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = "Your Measurement ID"
 
 ## How to test the software
 Send message with userId and use different userId for reply via 'live chat'.
