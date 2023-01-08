@@ -14,15 +14,25 @@ import {
   selectChatRoom,
   selectMessage,
   selectText,
-  selectUser,
   textUpdate,
   updateMessage,
 } from "../../feature/app/appSlice";
-import { push, ref, onValue } from "firebase/database";
-import { database } from "../../firebase/client";
+// import {getStorage, ref as ref_storage} from "firebase/storage";
 import React, { useEffect } from "react";
+import firebase from "firebase";
 
 export const ChatRoom = () => {
+  // const app=firebase?.apps[0]
+  // console.log(app);
+
+  // function readIssues() {
+  //   onValue(issuesRef,
+  //     (snapshot) => {
+  //     snapshot.forEach(snap => {
+  //       const issue = snap.val();
+  //       console.log(issue.NameOfStd);
+  //     })
+  // });
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectChatRoom);
 
@@ -56,18 +66,20 @@ const PopupChatRoom = () => {
   const messageArr = useAppSelector(selectMessage);
 
   const dispatch = useAppDispatch();
+  const app = firebase?.apps[0];
+  const dbRef = firebase?.database().ref("message");
 
-  const dbRef = ref(database, `message`);
-
+  // const dbRef = ref(database, `message`)
+  // const dbRef = firebase.database(database, `message`)
   const addMessage = () => {
-    onValue(dbRef, (snapshot) => {
+    dbRef.on("value", (snapshot) => {
       const data = snapshot.val();
-
+      
       const messages =
         data &&
         Object.keys(data).map((k) => ({
           id: k,
-          userId:data[k].userId,
+          userId: data[k].userId,
           message: data[k].message,
           timestamp: data[k].timestamp,
         }));
@@ -77,25 +89,26 @@ const PopupChatRoom = () => {
 
   useEffect(() => {
     addMessage();
+
   }, []);
 
   const _handleSubmit = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     event.preventDefault();
-    push(dbRef, { message: text, timestamp,userId }).then((data) => {});
+    dbRef.push({ message: text, timestamp, userId }).then((data) => {});
+
     dispatch(updateMessage({ message: text, timestamp, userId }));
     dispatch(removeText());
   };
-  console.log(messageArr);
 
   return (
-    <div className="bg-gray w-[240px] rounded-md drop-shadow-lg max-h-[300px]">
+    <div className="bg-gray w-[240px] rounded-md drop-shadow-lg max-h-[400px]">
       <div className="bg-blue text-white rounded-t-md p-2 space-x-2">
         <FontAwesomeIcon icon={faCircle} className="text-green text-[12px]" />
         <span>Live Chat</span>
       </div>
-      <div className="max-h-[200px] overflow-x-auto">
+      <div className="max-h-[300px] overflow-x-auto">
         {messageArr?.length > 0 ? (
           messageArr.map((a, i) => (
             <div
@@ -104,7 +117,11 @@ const PopupChatRoom = () => {
               }`}
               key={i}
             >
-              <span className="p-1 bg-white rounded-md display-block text-ellipsis overflow-hidden">
+              <span
+                className={`p-1 ${
+                  a.userId === userId ? "bg-blue text-white" : "bg-white"
+                } rounded-md display-block text-ellipsis overflow-hidden`}
+              >
                 {a.message}
                 <span className="text-darkGray text-xs"></span>
               </span>

@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { onValue, ref } from "firebase/database";
-// import { database } from "../../firebase/client";
 import type { RootState } from "../../store/store";
 
 export type AppState = {
@@ -9,7 +7,6 @@ export type AppState = {
   isChatRoom: boolean;
   selectedPage: string;
   text: string;
-  user: {};
   message: [];
 };
 
@@ -19,7 +16,6 @@ const initialState: AppState = {
   isChatRoom: false,
   selectedPage: "Home",
   text: "",
-  user: { userId: "h_3876201", userName: "Hein" },
   message: [],
 };
 
@@ -50,7 +46,7 @@ export const appSlice = createSlice({
       state.message = action.payload;
     },
     updateMessage: (state: any, action: PayloadAction<any>) => {
-      console.log("--------->", action.payload);
+      // console.log("--------->", action.payload);
     },
     removeText: (state) => {      
       state.text = "";
@@ -69,14 +65,11 @@ export const {
   removeText,
 } = appSlice.actions;
 
-// calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.
 export const selectSideBar = (state: RootState) => state.app.isOpen;
 export const selectNoti = (state: RootState) => state.app.notiOpen;
 export const selectSideBarMenu = (state: RootState) => state.app.selectedPage;
 export const selectChatRoom = (state: RootState) => state.app.isChatRoom;
 export const selectText = (state: RootState) => state.app.text;
-export const selectUser = (state: RootState) => state.app.user;
 export const selectMessage = (state: RootState) => state.app.message;
 
-// exporting the reducer here, as we need to add this to the store
 export default appSlice.reducer;

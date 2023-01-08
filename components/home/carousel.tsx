@@ -1,9 +1,8 @@
-// Import Swiper React components
 import Image from "next/image";
 import HotelIMG from "../../public/images/hotel_image.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import {  Pagination, Autoplay } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,10 +13,8 @@ import "swiper/css/scrollbar";
 export const Carousel = () => {
   return (
     <Swiper
-      // install Swiper modules
       modules={[Pagination, Autoplay]}
       spaceBetween={50}
-      // slidesPerView={1}
       initialSlide={1}
       centeredSlides={true}
       pagination={{ clickable: true }}
@@ -28,18 +25,15 @@ export const Carousel = () => {
           slidesPerView: 1,
           spaceBetween: 0,
         },
-        // when window width is >= 480px
         638: {
           slidesPerView: 2,
           spaceBetween: 30,
         },
-        // when window width is >= 640px
         1300: {
           slidesPerView: 3,
           spaceBetween: 40,
         },
       }}
-      // style={{paddingRight:80}}
     >
       <SwiperSlide style={{ height: 280 }}>
         <Image

@@ -1,4 +1,5 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import PushNotificationLayout from "../components/home/PushNotificationLayout";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -20,39 +21,41 @@ const IndexPage: React.FC = () => {
   const isOpen = useAppSelector(selectSideBar);
 
   return (
-    <div className="grid grid-cols-6 overflow-x-hidden ">
-      {isOpen ? (
-        <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
-          <Sidebar />
-        </div>
-      ) : null}
-      <div
-        className={`relative ${
-          isOpen ? "lg:col-span-4 md:col-span-4 xs:col-span-2" : "col-span-6"
-        } min-w-[390px] `}
-      >
-        {isOpen && (
-          <>
-            <Overlay />
-            <FontAwesomeIcon
-              icon={faTimes}
-              className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
-              onClick={() => dispatch(sideBarShowHide())}
-            />
-          </>
-        )}
+    <PushNotificationLayout>
+      <div className="grid grid-cols-6 overflow-x-hidden ">
+        {isOpen ? (
+          <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
+            <Sidebar />
+          </div>
+        ) : null}
+        <div
+          className={`relative ${
+            isOpen ? "lg:col-span-4 md:col-span-4 xs:col-span-2" : "col-span-6"
+          } min-w-[390px] `}
+        >
+          {isOpen && (
+            <>
+              <Overlay />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
+                onClick={() => dispatch(sideBarShowHide())}
+              />
+            </>
+          )}
 
-        <div className=" bg-blue h-[280px]">
-          <Header />
-          <Carousel />
+          <div className=" bg-blue h-[280px]">
+            <Header />
+            <Carousel />
+          </div>
+          <div className="mt-8">
+            <MenuBar />
+            <ServiceGallery />
+          </div>
         </div>
-        <div className="mt-8">
-          <MenuBar />
-          <ServiceGallery />
-        </div>
+        <ChatRoom />
       </div>
-      <ChatRoom />
-    </div>
+    </PushNotificationLayout>
   );
 };
 

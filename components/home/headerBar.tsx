@@ -1,9 +1,9 @@
 import Image from "next/image";
-import React, { useState } from "react";
-import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoWhite from "../../public/images/logo_white.png";
-import IconNoti from "../../public/images/Icon-Notification.png";
+import IconNoti from "../../public/images/Icon-Notification-White.png";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
@@ -16,10 +16,8 @@ import {
 
 export const Header = () => {
   const isOpen = useAppSelector(selectSideBar);
-  const notiOpen = useAppSelector(selectNoti);
   const isNotiOpen = useAppSelector(selectNoti);
 
-  const notiData = true;
   const dispatch = useAppDispatch();
 
   return (
@@ -37,10 +35,7 @@ export const Header = () => {
         className="relative cursor-pointer"
         onClick={() => dispatch(notiShowHide())}
       >
-          <FontAwesomeIcon icon={faBell} className="text-white text-lg" />
-        {notiData && (
-          <div className="bg-orange w-2 h-2 absolute top-0 right-0 rounded-full" />
-        )}
+      <Image alt="Logo_white" src={IconNoti} />
       </div>
       {isNotiOpen && <NotificationCard />}
     </div>

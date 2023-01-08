@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "firebase/register.js", "firebase/client.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "firebase/register.js", "firebase/client.js", "pages/index.js"],
   "exclude": ["node_modules"]
 }
