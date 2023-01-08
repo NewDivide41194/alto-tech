@@ -1,10 +1,5 @@
 # Alto-Tech-Assignment
 
-**Description**: Put a meaningful, short, plain-language description of what
-this project is trying to accomplish and why it matters.
-Describe the problem(s) this project solves.
-Describe how this software can improve the lives of its audience.
-
 - **Technology stack**: This project primarly used Next.JS.Firebase for real-time chat and notification. Used Redux for state management. Styled components by using Tailwind CSS.
 - **Status**: 1.1
 
