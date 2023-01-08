@@ -5,7 +5,7 @@ import localforage from "localforage";
 const firebaseCloudMessaging = {
   init: async () => {
     if (!firebase?.apps?.length) {
-      // Initialize the Firebase app with the credentials
+      // Initialize the Firebase
       const firebaseConfig = {
         apiKey: "AIzaSyBw02jh9tTqt-Q19UjbsHhhIbwwZzrzM5c",
         authDomain: "alto-chat-17886.firebaseapp.com",
@@ -20,7 +20,7 @@ const firebaseCloudMessaging = {
         const messaging = firebase.messaging();
         const tokenInLocalForage = await localforage.getItem("fcm_token");
 
-        // Return the token if it is alredy in our local storage
+        // Return the token if it is alredy in local storage
         if (tokenInLocalForage !== null) {
           return tokenInLocalForage;
         }
@@ -33,8 +33,7 @@ const firebaseCloudMessaging = {
             vapidKey:
               "BJ-v8ILaDGMziZeeQv1-hsUODxjkYDNggOrSWEfNtCAJAd1UdzbeBZAorMeYtnyAV80MuxPL1dpjcwxkbssxXrA",
           });
-
-          // Set token in our local storage
+          // Set token in local storage
           if (fcm_token) {
             localforage.setItem("fcm_token", fcm_token);
             return fcm_token;

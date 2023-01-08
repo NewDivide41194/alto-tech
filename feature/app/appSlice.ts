@@ -28,6 +28,7 @@ export const appSlice = createSlice({
       state.isOpen = !state.isOpen;
       state.notiOpen = false;
       state.isChatRoom =false
+
     },
     notiShowHide: (state) => {
       state.notiOpen = !state.notiOpen;
@@ -45,9 +46,6 @@ export const appSlice = createSlice({
     getMessage: (state: any, action: PayloadAction<any>) => {
       state.message = action.payload;
     },
-    updateMessage: (state: any, action: PayloadAction<any>) => {
-      // console.log("--------->", action.payload);
-    },
     removeText: (state) => {      
       state.text = "";
     },
@@ -61,7 +59,6 @@ export const {
   sideBarMenuSelect,
   textUpdate,
   getMessage,
-  updateMessage,
   removeText,
 } = appSlice.actions;
 

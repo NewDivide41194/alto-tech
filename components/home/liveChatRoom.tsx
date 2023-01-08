@@ -1,5 +1,7 @@
+import React, { useEffect } from "react";
+import firebase from "firebase";
 import Image from "next/image";
-import IconLiveChat from "../../public/images/Icon-LiveChat.png";
+
 import {
   faPaperPlane,
   faCircle,
@@ -17,22 +19,9 @@ import {
   textUpdate,
   updateMessage,
 } from "../../feature/app/appSlice";
-// import {getStorage, ref as ref_storage} from "firebase/storage";
-import React, { useEffect } from "react";
-import firebase from "firebase";
+import IconLiveChat from "../../public/images/Icon-LiveChat.png";
 
 export const ChatRoom = () => {
-  // const app=firebase?.apps[0]
-  // console.log(app);
-
-  // function readIssues() {
-  //   onValue(issuesRef,
-  //     (snapshot) => {
-  //     snapshot.forEach(snap => {
-  //       const issue = snap.val();
-  //       console.log(issue.NameOfStd);
-  //     })
-  // });
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectChatRoom);
 
@@ -58,23 +47,23 @@ export const ChatRoom = () => {
 
 const PopupChatRoom = () => {
   const text = useAppSelector(selectText);
-  const userId = "h_3876201";
-  // Use for conversation
-  // const userId = "h_3876202";
+  //Send and Reply by using Different userId
+  
+  // const userId = "h_3876201";
+  const userId = "h_3876202";
 
   const timestamp = Date.now();
   const messageArr = useAppSelector(selectMessage);
 
   const dispatch = useAppDispatch();
   const app = firebase?.apps[0];
+  //Get database Ref by path
   const dbRef = firebase?.database().ref("message");
 
-  // const dbRef = ref(database, `message`)
-  // const dbRef = firebase.database(database, `message`)
   const addMessage = () => {
+    //Retrieve data from DB
     dbRef.on("value", (snapshot) => {
       const data = snapshot.val();
-      
       const messages =
         data &&
         Object.keys(data).map((k) => ({
@@ -89,16 +78,14 @@ const PopupChatRoom = () => {
 
   useEffect(() => {
     addMessage();
-
   }, []);
 
   const _handleSubmit = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     event.preventDefault();
+    //Add new message to Real-time DB, update state and clear text
     dbRef.push({ message: text, timestamp, userId }).then((data) => {});
-
-    dispatch(updateMessage({ message: text, timestamp, userId }));
     dispatch(removeText());
   };
 

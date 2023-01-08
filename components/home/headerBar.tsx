@@ -1,12 +1,12 @@
-import Image from "next/image";
 import React from "react";
-import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import LogoWhite from "../../public/images/logo_white.png";
 import IconNoti from "../../public/images/Icon-Notification-White.png";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-
 import {
   notiShowHide,
   selectNoti,
@@ -35,7 +35,7 @@ export const Header = () => {
         className="relative cursor-pointer"
         onClick={() => dispatch(notiShowHide())}
       >
-      <Image alt="Logo_white" src={IconNoti} />
+        <Image alt="Logo_white" src={IconNoti} />
       </div>
       {isNotiOpen && <NotificationCard />}
     </div>

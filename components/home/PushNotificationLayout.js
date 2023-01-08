@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import * as firebase from "firebase/app";
 import "firebase/messaging";
+
 import { firebaseCloudMessaging } from "../../utils/firebase";
-import { ToastContainer, toast } from "react-toastify";
 
 function PushNotificationLayout({ children }) {
   useEffect(() => {
@@ -36,21 +36,11 @@ function PushNotificationLayout({ children }) {
     const messaging = firebase.messaging();
     messaging.onMessage((message) => {
         console.log("MSG------->",message);
-      toast(
-        // <div onClick={() => handleClickPushNotification(message?.data?.url)}>
-        //   <h5>{message?.notification?.title}</h5>
-        //   <h6>{message?.notification?.body}</h6>
-        // </div>,
-        // {
-        //   closeOnClick: false,
-        // }
-      );
     });
   }
 
   return (
     <>
-      <ToastContainer />
       {children}
     </>
   );

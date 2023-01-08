@@ -4,7 +4,6 @@ import HotelIMG from "../../public/images/hotel_image.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {  Pagination, Autoplay } from "swiper";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

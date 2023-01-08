@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import CompanyLogo_Circle from "../../public/images/logo_circle.png";
 import CompanyLogo from "../../public/images/logo.png";
 

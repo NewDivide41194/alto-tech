@@ -1,10 +1,10 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import PushNotificationLayout from "../components/home/PushNotificationLayout";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectSideBar, sideBarShowHide } from "../feature/app/appSlice";
+import PushNotificationLayout from "../components/home/PushNotificationLayout";
+
 import {
   Header,
   MenuBar,
@@ -14,11 +14,19 @@ import {
   ServiceGallery,
   ChatRoom,
 } from "../components/home";
+import { useEffect } from "react";
 
 const IndexPage: React.FC = () => {
   const dispatch = useAppDispatch();
-
   const isOpen = useAppSelector(selectSideBar);
+  
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   return (
     <PushNotificationLayout>
@@ -39,7 +47,9 @@ const IndexPage: React.FC = () => {
               <FontAwesomeIcon
                 icon={faTimes}
                 className="absolute z-50 cursor-pointer top-8 left-4 text-lg text-white"
-                onClick={() => dispatch(sideBarShowHide())}
+                onClick={() => {
+                  dispatch(sideBarShowHide());
+                }}
               />
             </>
           )}
