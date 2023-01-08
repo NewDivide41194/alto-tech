@@ -19,7 +19,6 @@ export const Header = () => {
   const notiOpen = useAppSelector(selectNoti);
   const isNotiOpen = useAppSelector(selectNoti);
 
-  console.log("=======>", isOpen);
   const notiData = true;
   const dispatch = useAppDispatch();
 

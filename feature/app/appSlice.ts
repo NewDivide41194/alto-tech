@@ -31,6 +31,7 @@ export const appSlice = createSlice({
     sideBarShowHide: (state) => {
       state.isOpen = !state.isOpen;
       state.notiOpen = false;
+      state.isChatRoom =false
     },
     notiShowHide: (state) => {
       state.notiOpen = !state.notiOpen;
@@ -46,16 +47,12 @@ export const appSlice = createSlice({
     },
 
     getMessage: (state: any, action: PayloadAction<any>) => {
-      console.log("-------------------", action.payload);
       state.message = action.payload;
-      console.log(state.message);
     },
     updateMessage: (state: any, action: PayloadAction<any>) => {
-      console.log("UUUUUUUUUUUUUU", action.payload);
+      console.log("--------->", action.payload);
     },
-    removeText: (state) => {
-      console.log("remove Text");
-      
+    removeText: (state) => {      
       state.text = "";
     },
   },

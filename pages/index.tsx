@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,34 +15,12 @@ import {
 } from "../components/home";
 
 const IndexPage: React.FC = () => {
-  useEffect(() => {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("/firebase-messaging-sw.js").then(
-        function (registration) {
-          console.log(
-            "Service Worker registration successful with scope: ",
-            registration.scope
-          );
-        },
-        function (err) {
-          console.log("Service Worker registration failed: ", err);
-        }
-      );
-    });
-  });
   const dispatch = useAppDispatch();
-  const [show, setShow] = useState(false);
-  const [notification, setNotification] = useState({ title: "", body: "" });
 
   const isOpen = useAppSelector(selectSideBar);
-  const [isTokenFound, setTokenFound] = useState(false);
-
-  // getToken(false);
-
-  console.log("--------->", notification);
 
   return (
-    <div className="grid grid-cols-6 overflow-x-hidden">
+    <div className="grid grid-cols-6 overflow-x-hidden ">
       {isOpen ? (
         <div className="lg:col-span-2 md:col-span-2 xs:col-span-4">
           <Sidebar />

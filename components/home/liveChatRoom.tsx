@@ -49,13 +49,15 @@ export const ChatRoom = () => {
 const PopupChatRoom = () => {
   const text = useAppSelector(selectText);
   const userId = "h_3876201";
+  // Use for conversation
+  // const userId = "h_3876202";
+
   const timestamp = Date.now();
-  const userName = "Hein_Htet";
   const messageArr = useAppSelector(selectMessage);
 
   const dispatch = useAppDispatch();
 
-  const dbRef = ref(database, `message/${userId}/${userName}`);
+  const dbRef = ref(database, `message`);
 
   const addMessage = () => {
     onValue(dbRef, (snapshot) => {
@@ -65,13 +67,14 @@ const PopupChatRoom = () => {
         data &&
         Object.keys(data).map((k) => ({
           id: k,
-          userId,
+          userId:data[k].userId,
           message: data[k].message,
           timestamp: data[k].timestamp,
         }));
       dispatch(getMessage(messages));
     });
   };
+
   useEffect(() => {
     addMessage();
   }, []);
@@ -80,12 +83,11 @@ const PopupChatRoom = () => {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     event.preventDefault();
-    push(dbRef, { message: text, timestamp }).then((data) => {
-      console.log("Data added");
-    });
-    dispatch(updateMessage({ message: text, timestamp }));
+    push(dbRef, { message: text, timestamp,userId }).then((data) => {});
+    dispatch(updateMessage({ message: text, timestamp, userId }));
     dispatch(removeText());
   };
+  console.log(messageArr);
 
   return (
     <div className="bg-gray w-[240px] rounded-md drop-shadow-lg max-h-[300px]">
@@ -109,7 +111,7 @@ const PopupChatRoom = () => {
             </div>
           ))
         ) : (
-          <span>No Message</span>
+          <div className="text-darkGray text-center pt-2">No Message</div>
         )}
       </div>
 

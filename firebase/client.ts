@@ -1,21 +1,19 @@
-// Import the functions you need from the SDKs you need
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBw02jh9tTqt-Q19UjbsHhhIbwwZzrzM5c",
-  authDomain: "alto-chat-17886.firebaseapp.com",
-  databaseURL: "https://alto-chat-17886-default-rtdb.firebaseio.com",
-  projectId: "alto-chat-17886",
-  storageBucket: "alto-chat-17886.appspot.com",
-  messagingSenderId: "303637769215",
-  appId: "1:303637769215:web:a4f172ff1770d78374d5ca",
-  measurementId: "G-KFC9WSMM2N",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-console.log(app);
 
 const database = getDatabase();
 
