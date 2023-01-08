@@ -1,4 +1,4 @@
-# Alto-Techc
+# Alto-Tech-Assignment
 
 **Description**: Put a meaningful, short, plain-language description of what
 this project is trying to accomplish and why it matters.
