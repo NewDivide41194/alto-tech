@@ -17,7 +17,6 @@ import {
   selectMessage,
   selectText,
   textUpdate,
-  updateMessage,
 } from "../../feature/app/appSlice";
 import IconLiveChat from "../../public/images/Icon-LiveChat.png";
 
@@ -48,7 +47,7 @@ export const ChatRoom = () => {
 const PopupChatRoom = () => {
   const text = useAppSelector(selectText);
   //Send and Reply by using Different userId
-  
+
   // const userId = "h_3876201";
   const userId = "h_3876202";
 
